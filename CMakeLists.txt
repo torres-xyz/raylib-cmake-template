@@ -1,10 +1,14 @@
 cmake_minimum_required(VERSION 3.24)
 project(raylib-template LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Our Project
 add_executable(${PROJECT_NAME})
-target_sources(${PROJECT_NAME} PRIVATE main.cpp)
+target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion) # From https://www.learncpp.com/cpp-tutorial/configuring-your-compiler-warning-and-error-levels/
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_23)
+target_sources(${PROJECT_NAME} PRIVATE main.cpp)
+
 
 # Dependencies
 include(FetchContent)
