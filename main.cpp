@@ -1,15 +1,16 @@
 #include <iostream>
 #include "raylib.h"
+#include "constants.hpp"
+
 
 int main()
 {
     // Initialization ----------------------------------------------------------
-    const int screenWidth = 800;
-    const int screenHeight = 450;
-    SetConfigFlags(FLAG_VSYNC_HINT);
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
-    SetTargetFPS(144);
+    SetConfigFlags(FLAG_VSYNC_HINT);
+    InitWindow(constants::screenWidth, constants::screenHeight, "Raylib Template");
+
+    SetTargetFPS(GetMonitorRefreshRate(0));
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
