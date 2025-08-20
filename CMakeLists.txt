@@ -19,12 +19,12 @@ target_sources(${PROJECT_NAME} PRIVATE main.cpp
         constants.hpp)
 
 ## Adding the resources folder.
-add_custom_target(copy_assets
+add_custom_target(copy_resources
         COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different
         ${CMAKE_CURRENT_LIST_DIR}/resources
         ${CMAKE_CURRENT_BINARY_DIR}/$<CONFIG>/resources
 )
-add_dependencies(${PROJECT_NAME} copy_assets)
+add_dependencies(${PROJECT_NAME} copy_resources)
 
 # Dependencies
 include(FetchContent)
