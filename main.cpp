@@ -1,10 +1,14 @@
 #include <iostream>
+#include <random> // for std::mt19937 and std::random_device
 #include "constants.hpp"
 #include "raylib.h"
 
 int main()
 {
     // Initialization ----------------------------------------------------------
+    std::mt19937 mt{ std::random_device{}() }; //Mersenne Twister
+    // Create a reusable random number generator that generates uniform numbers between 1 and 6
+    std::uniform_int_distribution die6{ 1, 6 };
 
     SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(constants::screenWidth, constants::screenHeight,
