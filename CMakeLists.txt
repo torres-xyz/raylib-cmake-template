@@ -15,8 +15,10 @@ target_compile_options(${PROJECT_NAME} PRIVATE
         -Wconversion
         -Wsign-conversion)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_23)
-target_sources(${PROJECT_NAME} PRIVATE main.cpp
-        constants.hpp)
+target_sources(${PROJECT_NAME} PRIVATE
+        main.cpp
+        constants.hpp
+        random.hpp)
 
 ## Adding the resources folder.
 add_custom_target(copy_resources

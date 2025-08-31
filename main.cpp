@@ -1,14 +1,13 @@
 #include <iostream>
 #include <random> // for std::mt19937 and std::random_device
 #include "constants.hpp"
+#include "random.hpp"
 #include "raylib.h"
 
 int main()
 {
     // Initialization ----------------------------------------------------------
-    std::mt19937 mt{ std::random_device{}() }; //Mersenne Twister
-    // Create a reusable random number generator that generates uniform numbers between 1 and 6
-    std::uniform_int_distribution die6{ 1, 6 };
+    std::cout << "Random Number: " << Random::get(1,10) << "\n";
 
     SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(constants::screenWidth, constants::screenHeight,
@@ -16,7 +15,7 @@ int main()
 
     SetTargetFPS(GetMonitorRefreshRate(0));
 
-    Texture2D mewTex = LoadTexture("resources/mew.png");
+    const Texture2D mewTex = LoadTexture("resources/mew.png");
 
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
