@@ -6,7 +6,8 @@ project(raylib-template LANGUAGES CXX)
 add_executable(${PROJECT_NAME})
 set_target_properties(${PROJECT_NAME} PROPERTIES
         CXX_STANDARD_REQUIRED ON
-        CXX_EXTENSIONS OFF)
+        CXX_EXTENSIONS OFF
+        COMPILE_WARNING_AS_ERROR ON) # Important! Treat warning as errors!
 ## From https://www.learncpp.com/cpp-tutorial/configuring-your-compiler-warning-and-error-levels/
 target_compile_options(${PROJECT_NAME} PRIVATE
         -Wall

@@ -1,13 +1,13 @@
 #include <iostream>
 #include <random> // for std::mt19937 and std::random_device
 #include "constants.hpp"
-#include "random.hpp"
 #include "raylib.h"
 
 int main()
 {
     // Initialization ----------------------------------------------------------
-    std::cout << "Random Number: " << Random::get(1,10) << "\n";
+    std::random_device rd{};
+    SetRandomSeed(rd());
 
     SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(constants::screenWidth, constants::screenHeight,
