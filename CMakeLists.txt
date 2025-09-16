@@ -31,6 +31,7 @@ add_dependencies(${PROJECT_NAME} copy_resources)
 # Dependencies
 include(FetchContent)
 
+## Fetch Raylib
 set(RAYLIB_VERSION 5.5)
 FetchContent_Declare(
         raylib
@@ -41,4 +42,15 @@ FetchContent_Declare(
 set(BUILD_EXAMPLES OFF CACHE INTERNAL "") # We don't want to build raylib's (or any, since this is universal) examples
 FetchContent_MakeAvailable(raylib)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
+## Fetch Raylib-CPP
+set(RAYLIB_CPP_VERSION v5.5.0) # Keep this synced with ${RAYLIB_VERSION}
+FetchContent_Declare(
+        raylib_cpp
+        GIT_REPOSITORY https://github.com/RobLoach/raylib-cpp.git
+        GIT_TAG ${RAYLIB_CPP_VERSION}
+        SYSTEM # Makes it so that target_compile_options doesn't apply to this
+)
+set(BUILD_EXAMPLES OFF CACHE INTERNAL "") # We don't want to build raylib's (or any, since this is universal) examples
+FetchContent_MakeAvailable(raylib_cpp)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE raylib raylib_cpp)

@@ -2,6 +2,7 @@
 #include <random> // for std::random_device
 #include "constants.hpp"
 #include "raylib.h"
+#include "raylib-cpp.hpp"
 
 int main()
 {
@@ -10,25 +11,25 @@ int main()
     SetRandomSeed(rd());
 
     SetConfigFlags(FLAG_VSYNC_HINT);
-    InitWindow(constants::screenWidth, constants::screenHeight,
-               "Raylib Template");
+    raylib::Window window(constants::screenWidth, constants::screenHeight,
+                          "Raylib-cpp Template");
+    // InitWindow(constants::screenWidth, constants::screenHeight, "Raylib Template");
 
     SetTargetFPS(GetMonitorRefreshRate(0));
 
-    const Texture2D mewTex = LoadTexture("resources/mew.png");
+    const raylib::Texture2D mewTex("resources/mew.png");
 
     // Main game loop
-    while (!WindowShouldClose()) // Detect window close button or ESC key
+    while (!window.ShouldClose()) // Detect window close button or ESC key
     {
         // Update --------------------------------------------------------------
 
 
         // Draw ----------------------------------------------------------------
         BeginDrawing();
-        ClearBackground(RAYWHITE);
+        window.ClearBackground(RAYWHITE);
 
-        DrawTexture(mewTex,
-                    constants::screenWidth / 2 - mewTex.width / 2,
+        mewTex.Draw(constants::screenWidth / 2 - mewTex.width / 2,
                     constants::screenHeight / 2 - mewTex.height / 2,
                     WHITE);
 
@@ -38,7 +39,7 @@ int main()
     }
 
     // De-Initialization -------------------------------------------------------
-    CloseWindow(); // Close window and OpenGL context
+    // UnloadTexture() and CloseWindow() are called automatically.
 
     return 0;
 }

@@ -1,3 +1,11 @@
+# READ ME
+
+Project uses:
+
+- [Raylib](https://github.com/raysan5/raylib)
+- [raylib-cpp](https://github.com/RobLoach/raylib-cpp)
+-
+
 # CLI Setup
 
 1 - Run
@@ -39,8 +47,6 @@ and `$<CONFIG>` won't be set unless we have a multi-config setup.
 
 # Useful Links
 
-[Raylib's Github](https://github.com/raysan5/raylib)
-
 [Raylib's Examples](https://www.raylib.com/examples.html)
-
+[rayli-cpp documentation](https://robloach.github.io/raylib-cpp/index.html)
 
