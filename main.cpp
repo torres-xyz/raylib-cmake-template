@@ -3,6 +3,10 @@
 #include "constants.hpp"
 #include "raylib.h"
 #include "raylib-cpp.hpp"
+// #include "imgui.h"
+// #include "rlImGui.h"
+#include "cmake-build-debug/_deps/dear_imgui-src/imgui.h"
+#include "cmake-build-debug/_deps/rlimgui-src/rlImGui.h"
 
 int main()
 {
@@ -16,6 +20,7 @@ int main()
     // InitWindow(constants::screenWidth, constants::screenHeight, "Raylib Template");
 
     SetTargetFPS(GetMonitorRefreshRate(0));
+    rlImGuiSetup(true);
 
     const raylib::Texture2D mewTex("resources/mew.png");
 
@@ -28,6 +33,23 @@ int main()
         // Draw ----------------------------------------------------------------
         BeginDrawing();
         window.ClearBackground(RAYWHITE);
+        // start ImGui Conent
+        rlImGuiBegin();
+
+        // show ImGui Content
+        bool open = true;
+        ImGui::ShowDemoWindow(&open);
+
+        if (ImGui::Begin("Test Window", &open))
+        {
+            ImGui::TextUnformatted(ICON_FA_JEDI);
+
+            rlImGuiImage(&mewTex);
+        }
+        ImGui::End();
+
+        // end ImGui Content
+        rlImGuiEnd();
 
         mewTex.Draw(constants::screenWidth / 2 - mewTex.width / 2,
                     constants::screenHeight / 2 - mewTex.height / 2,

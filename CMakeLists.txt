@@ -28,7 +28,7 @@ add_custom_target(copy_resources
 )
 add_dependencies(${PROJECT_NAME} copy_resources)
 
-# Dependencies
+# Fetch Content
 include(FetchContent)
 
 ## Fetch Raylib
@@ -42,7 +42,7 @@ FetchContent_Declare(
 set(BUILD_EXAMPLES OFF CACHE INTERNAL "") # We don't want to build raylib's (or any, since this is universal) examples
 FetchContent_MakeAvailable(raylib)
 
-## Fetch Raylib-CPP
+## Fetch Raylib-CPP ------------------------------------------------------------
 set(RAYLIB_CPP_VERSION v5.5.0) # Keep this synced with ${RAYLIB_VERSION}
 FetchContent_Declare(
         raylib_cpp
@@ -50,7 +50,54 @@ FetchContent_Declare(
         GIT_TAG ${RAYLIB_CPP_VERSION}
         SYSTEM # Makes it so that target_compile_options doesn't apply to this
 )
-set(BUILD_EXAMPLES OFF CACHE INTERNAL "") # We don't want to build raylib's (or any, since this is universal) examples
 FetchContent_MakeAvailable(raylib_cpp)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE raylib raylib_cpp)
+## Fetch Dear ImGui ------------------------------------------------------------
+set(DEAR_IMGUI_VERSION v1.92.2b-docking)
+FetchContent_Declare(
+        dear_imgui
+        GIT_REPOSITORY https://github.com/ocornut/imgui.git
+        GIT_TAG ${DEAR_IMGUI_VERSION}
+        SYSTEM # Makes it so that target_compile_options doesn't apply to this
+)
+FetchContent_MakeAvailable(dear_imgui)
+add_library(dear_imgui STATIC
+        ${dear_imgui_SOURCE_DIR}/imgui.cpp
+        ${dear_imgui_SOURCE_DIR}/imgui_demo.cpp
+        ${dear_imgui_SOURCE_DIR}/imgui_draw.cpp
+        ${dear_imgui_SOURCE_DIR}/imgui_tables.cpp
+        ${dear_imgui_SOURCE_DIR}/imgui_widgets.cpp
+)
+#target_include_directories(dear_imgui
+#        PRIVATE
+#        ${dear_imgui_SOURCE_DIR}
+#        ${dear_imgui_SOURCE_DIR}/backends
+#)
+
+# Fetch rlImGui ----------------------------------------------------------------
+set(RL_IMGUI_VERSION 4d8a61842903978bc42adf3347cd34f4e6524efc)
+FetchContent_Declare(
+        rlimgui
+        GIT_REPOSITORY https://github.com/raylib-extras/rlImGui.git
+        GIT_TAG ${RL_IMGUI_VERSION}
+        SYSTEM # Makes it so that target_compile_options doesn't apply to this
+)
+FetchContent_MakeAvailable(rlimgui)
+add_library(rlimgui STATIC
+        ${rlimgui_SOURCE_DIR}/rlImGui.cpp
+        ${rlimgui_SOURCE_DIR}/rlImGui.h
+        ${rlimgui_SOURCE_DIR}/rlImGuiColors.h
+        ${dear_imgui_SOURCE_DIR}/imgui.cpp
+        ${dear_imgui_SOURCE_DIR}/imgui_demo.cpp
+        ${dear_imgui_SOURCE_DIR}/imgui_draw.cpp
+        ${dear_imgui_SOURCE_DIR}/imgui_tables.cpp
+        ${dear_imgui_SOURCE_DIR}/imgui_widgets.cpp
+)
+target_include_directories(
+        rlimgui
+        PRIVATE
+        ${rlimgui_SOURCE_DIR}
+        ${dear_imgui_SOURCE_DIR}
+)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE raylib raylib_cpp dear_imgui rlimgui)
