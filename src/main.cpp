@@ -3,10 +3,8 @@
 #include "constants.hpp"
 #include "raylib.h"
 #include "raylib-cpp.hpp"
-// #include "imgui.h"
-// #include "rlImGui.h"
-#include "cmake-build-debug/_deps/dear_imgui-src/imgui.h"
-#include "cmake-build-debug/_deps/rlimgui-src/rlImGui.h"
+#include "imgui.h"
+#include "rlImGui.h"
 
 int main()
 {
@@ -33,7 +31,7 @@ int main()
         // Draw ----------------------------------------------------------------
         BeginDrawing();
         window.ClearBackground(RAYWHITE);
-        // start ImGui Conent
+        // start ImGui Content
         rlImGuiBegin();
 
         // show ImGui Content
