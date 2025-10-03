@@ -8,3 +8,6 @@ FetchContent_Declare(
         SYSTEM # Makes it so that target_compile_options doesn't apply to this
 )
 FetchContent_MakeAvailable(raylib_cpp)
+
+# ralib_cpp depends on raylib. And we will depend on raylib_cpp
+target_link_libraries(raylib_cpp INTERFACE raylib)

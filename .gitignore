@@ -28,4 +28,6 @@
 *.app
 
 /build
+/_deps
+/graphviz
 .idea/
