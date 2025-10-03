@@ -1,5 +1,7 @@
 add_executable(${PROJECT_NAME}
-        main.cpp)
+        main.cpp
+        imgui_sidebar.cpp
+        imgui_sidebar.hpp)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
         CXX_STANDARD_REQUIRED ON
