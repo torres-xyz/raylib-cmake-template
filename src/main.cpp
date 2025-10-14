@@ -36,7 +36,7 @@ int main()
         window.ClearBackground(RAYWHITE);
 
 #if (DEBUG)
-        DrawSideBar();
+        ImGuiSideBar::DrawSideBar();
 #endif
 
         mewTex.Draw(constants::screenWidth / 2 - mewTex.width / 2,

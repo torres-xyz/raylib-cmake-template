@@ -21,12 +21,13 @@ add_custom_target(copy_resources
         ${CMAKE_CURRENT_LIST_DIR}/resources
         $<TARGET_FILE_DIR:${PROJECT_NAME}>/resources #copy to the same place as the executable
 )
-
 add_dependencies(${PROJECT_NAME} copy_resources)
+
+# Dependencies
+include(FetchContent)
 
 target_link_libraries(${PROJECT_NAME}
         PRIVATE
-        #        raylib
         raylib_cpp
         imgui
         rlimgui)

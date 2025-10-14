@@ -23,4 +23,4 @@ target_sources(
         ${rlimgui_SOURCE_DIR}/rlImGuiColors.h
 )
 
-target_link_libraries(rlimgui PRIVATE imgui)
+target_link_libraries(rlimgui PRIVATE imgui raylib)
