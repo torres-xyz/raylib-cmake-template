@@ -38,7 +38,7 @@ to run the executable we just created.
 
 3 - Make sure the `raylib-template` target configuration has its Executable set to `bootstrap`.
 
-3 - Run (Shift + F10).
+4 - Run (Shift + F10).
 
 # Notes
 
@@ -51,4 +51,12 @@ and `$<CONFIG>` won't be set unless we have a multi-config setup.
 
 [Raylib's Examples](https://www.raylib.com/examples.html)
 [rayli-cpp documentation](https://robloach.github.io/raylib-cpp/index.html)
+
+# Troubleshooting
+
+## Cmake says libraylib-template.a not in executable format: file format not recognized.
+
+Solution: Check step 3 of "Clion Setup".
+
+
 
