@@ -36,6 +36,8 @@ to run the executable we just created.
 2 - Edit the CMake profile created, probably "Debug", and set Generator to
 "Ninja Multi-Config". <sup>1</sup>
 
+3 - Make sure the `raylib-template` target configuration has its Executable set to `bootstrap`.
+
 3 - Run (Shift + F10).
 
 # Notes

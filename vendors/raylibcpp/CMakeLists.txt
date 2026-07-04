@@ -3,7 +3,7 @@ include(FetchContent)
 FetchContent_Declare(
         raylib_cpp
         GIT_REPOSITORY https://github.com/RobLoach/raylib-cpp.git
-        GIT_TAG v5.5.0 # Keep this synced with raylib's version
+        GIT_TAG v6.0.2 # Keep this synced with raylib's version
         GIT_SHALLOW 1
         SYSTEM # Makes it so that target_compile_options doesn't apply to this
 )

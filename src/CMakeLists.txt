@@ -1,16 +1,17 @@
-add_executable(${PROJECT_NAME}
+add_library(${PROJECT_NAME}
+        STATIC
         main.cpp
+        constants.hpp
         imgui_sidebar.cpp
-        imgui_sidebar.hpp)
+        imgui_sidebar.hpp
+)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
         CXX_STANDARD_REQUIRED ON
         CXX_EXTENSIONS OFF
         COMPILE_WARNING_AS_ERROR ON) # Treat warning as errors! Same as "-Werror"
-target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_23)
-
-# From https://www.learncpp.com/cpp-tutorial/configuring-your-compiler-warning-and-error-levels/
-target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion)
+target_compile_features(${PROJECT_NAME} PRIVATE ${CPP_VERSION})
+target_compile_options(${PROJECT_NAME} PRIVATE ${W_FLAGS})
 
 #Using this to easily exclude Debug behaviours from non-debug builds
 add_compile_definitions("DEBUG=$<CONFIG:Debug>")
@@ -24,10 +25,14 @@ add_custom_target(copy_resources
 add_dependencies(${PROJECT_NAME} copy_resources)
 
 # Dependencies
-include(FetchContent)
-
 target_link_libraries(${PROJECT_NAME}
-        PRIVATE
+        PUBLIC # Set to public so our Tests can have access to the headers in our dependencies
         raylib_cpp
         imgui
-        rlimgui)
+        rlimgui
+        sqlite
+)
+
+add_executable(bootstrap bootstrap-main.cpp
+)
+target_link_libraries(bootstrap PRIVATE ${PROJECT_NAME})

@@ -1,13 +1,11 @@
 #include <iostream>
 #include <random> // for std::random_device
 #include "constants.hpp"
-// #include "raylib.h"
 #include "raylib-cpp.hpp"
-#include "imgui.h"
 #include "imgui_sidebar.hpp"
 #include "rlImGui.h"
 
-int main()
+int run()
 {
     // Initialization ----------------------------------------------------------
     std::random_device rd{};

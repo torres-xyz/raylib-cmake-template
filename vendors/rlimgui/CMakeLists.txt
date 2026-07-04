@@ -3,15 +3,16 @@ include(FetchContent)
 FetchContent_Declare(
         rlimgui
         GIT_REPOSITORY https://github.com/raylib-extras/rlImGui.git
-        GIT_TAG 4d8a61842903978bc42adf3347cd34f4e6524efc
-        GIT_SHALLOW 1
+        GIT_TAG dc7f97679a024eee8f5f009e77cc311748200415
+        # GIT_SHALLOW 1 #If GIT_SHALLOW is enabled then GIT_TAG works only with branch names and tags. A commit hash is not allowed.
         SYSTEM
 )
 FetchContent_MakeAvailable(rlimgui)
 
 add_library(rlimgui)
 
-target_include_directories(rlimgui SYSTEM
+target_include_directories(rlimgui
+        SYSTEM
         PUBLIC
         ${rlimgui_SOURCE_DIR})
 
